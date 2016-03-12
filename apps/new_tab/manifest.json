@@ -1,9 +1,0 @@
-{
-	"name": "A new way of viewing indiviudal tabs",
-	"description": "Show off your bookmarks on a new tab",
-	"version": "1.0",
-	"chrome_url_overrides": {
-		"newtab": "start-page.html"
-	},
-	"manifest_version": 2
-}
