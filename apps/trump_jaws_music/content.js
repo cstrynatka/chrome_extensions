@@ -17,10 +17,44 @@ chrome.runtime.onMessage.addListener(
 	}
 );
 
-// var audioElement = document.createElement('audio');
-// audioElement.setAttribute('src', "Jaws_Theme_Song.mp3", "Jaws_Theme_Song.ogg");
-// audioElement.play();
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', "Jaws_Theme_Song.mp3", "Jaws_Theme_Song.ogg");
+audioElement.play();
 
-onload = function() {
-	document.getElementById("Jaws_Theme_Song.mp3").play
+// onload = function() {
+// 	document.getElementById("Jaws_Theme_Song.mp3").play
+// }
+
+var regexDonaldTrump = /Donald Trump/;
+var regexTrump = /Trump/;
+
+function isDonaldTrumpArticle() {
+	return regexDonaldTrump.test(document.title) ||
+		(regexTrump.test(document.title) && regex.DonaldTrump.test(document.body.textContent));
 }
+
+window.onbeforeunload = function(e) {
+	if (isDonaldTrumpArticle()) {
+		chrome.extension.sendMessage({
+			action: "stop"
+		});
+	}
+}
+
+document.onreadystatechange = function(e) {
+	if (document.readyState === 'complete') {
+		if (isDonaldTrumpArticle()) {
+			chrome.extension.sendMessage({
+				action: "play"
+			});
+		}
+	}
+};
+
+document.onload = function(e) {
+	if (isDonaldTrumpArticle()) {
+		chrome.extension.sendMessage({
+			action: "play"
+		});
+	}
+};
