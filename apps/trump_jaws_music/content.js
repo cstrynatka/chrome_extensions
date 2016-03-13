@@ -17,5 +17,29 @@ chrome.runtime.onMessage.addListener(
 	}
 );
 
-var audio = document.getElementById("Jaws_Theme_Music");
-sample.play();
+var audio = new Audio("Jaws_Theme_Song.mp3", "Jaws_Theme_Song.ogg");
+
+audio.oncanplaythrough = function() {
+	audio.play();
+}
+
+audio.onended = function() {
+	alert('ended');
+}
+
+audio.addEventListener('canplaythrough', function() {
+	audio.play();
+} false);
+
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', "Jaws_Theme_Song.mp3", "Jaws_Theme_Song.ogg");
+audioElement.load()
+audioElement.addEventListener("load", function() {
+	audioElement.play();
+	$(".duration span").html(audioElement.duration);
+	$(".filename span").html(audioElement.src);
+}, true);
+
+window.onload = function() {
+	document.getElementById("Jaws_Theme_Music").play();
+}
