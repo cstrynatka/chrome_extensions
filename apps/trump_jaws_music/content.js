@@ -17,6 +17,10 @@ chrome.runtime.onMessage.addListener(
 	}
 );
 
-var audioElement = document.createElement('audio');
-audioElement.setAttribute('src', "Jaws_Theme_Song.mp3", "Jaws_Theme_Song.ogg");
-audioElement.play();
+// var audioElement = document.createElement('audio');
+// audioElement.setAttribute('src', "Jaws_Theme_Song.mp3", "Jaws_Theme_Song.ogg");
+// audioElement.play();
+
+onload = function() {
+	document.getElementById("Jaws_Theme_Song.mp3").play
+}
